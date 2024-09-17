@@ -9,9 +9,10 @@ import { filterList } from '@constants/filter.tsx';
 type DropdownMenuProps = {
     onItemSelected: (text: string) => void;
     onReset: () => void;
+    onClose: () => void;
 };
 
-const DropdownBody: FC<DropdownMenuProps> = ({ onItemSelected, onReset }) => {
+const DropdownBody: FC<DropdownMenuProps> = ({ onItemSelected, onReset, onClose }) => {
     const [selectedItem, setSelectedItem] = useState<number | null>(null);
 
     const handleReset = () => {
@@ -24,6 +25,7 @@ const DropdownBody: FC<DropdownMenuProps> = ({ onItemSelected, onReset }) => {
             const selected = filterList.find((item) => item.id === selectedItem);
             if (selected) {
                 onItemSelected(selected.title);
+                onClose();
             }
         }
     };

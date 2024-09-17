@@ -22,6 +22,10 @@ const Filter: FC = () => {
         setSelectedText('סטטוס בקשה');
     };
 
+    const handleCloseDropdown = () => {
+        setIsOpenDropdown(false);
+    };
+
     const handleClickOutside = (event: MouseEvent) => {
         if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
             setIsOpenDropdown(false);
@@ -57,7 +61,13 @@ const Filter: FC = () => {
             </div>
 
             <Dropdown
-                component={<DropdownBody onItemSelected={handleTextUpdate} onReset={handleResetText} />}
+                component={
+                    <DropdownBody
+                        onItemSelected={handleTextUpdate}
+                        onReset={handleResetText}
+                        onClose={handleCloseDropdown}
+                    />
+                }
                 className={isOpenDropdown ? 'open' : ''}
             />
         </StyledFilter>
